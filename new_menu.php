@@ -43,7 +43,7 @@ if (isset($_GET["action"])) {
 <html>
 
 <head>
-     <title>612 Restauran</title>
+     <title>612 Restaurant</title>
      <link rel="stylesheet" href="menu.css">
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
@@ -56,7 +56,7 @@ if (isset($_GET["action"])) {
           <a class="active" href="menu.html">Menu</a>
           <form method="post" action="userprofile.php"></form>
           <a href="userprofile.php">Profile</a>
-          <a href="status.html">Your Order</a>
+          <a href="status.php">Your Order</a>
           <form role="form" method="post" action="logout.php">
                <a href="logout.php">Logout</a>
                <!-- <a href="new_login.html">Logout</a> -->
@@ -122,7 +122,11 @@ if (isset($_GET["action"])) {
                          <tr>
                               <td colspan="3" text-align="right">Total</td>
                               <td text-align="right"> <?php echo number_format($total, 2); ?>Baht</td>
-                              <td></td>
+                              <!-- <form method="post" action="payment.php"> -->
+                              <!-- <td input type="submit" name="checkout" style="margin-top:5px;" class="btn btn-success" value="Add to Cart">Check Out</td> -->
+                              <td> <a href="payment.php"style="margin-top:5px;">Check Out</a></td>
+                              <!-- <td></td> -->
+                              <!-- </form> -->
                          </tr>
                     <?php
                     }
@@ -131,6 +135,21 @@ if (isset($_GET["action"])) {
           </div>
      </div>
      <br />
+     <?php
+     $_SESSION["item_name"] = $values["item_name"];
+     $_SESSION["item_quantity"] = $values["item_quantity"];
+     $_SESSION["totalprice"] = $total;
+     // foreach ($_SESSION["shopping_cart"] as $keys => $values){
+     //      $details=$details.$values["item_name"].$_SESSION["item_quantity"]*$values["item_price"]."  ";
+     //  }
+     // echo $details;
+     
+     // $_SESSION["test"] = "TEST";
+     // echo $_SESSION["test"];
+     // echo "Session variables are set.";
+     // echo $_SESSION["item_name"].$_SESSION["item_quantity"];
+     // echo $_SESSION["shopping_cart"][0];
+     // print_r($_SESSION);
+     ?>
 </body>
-
 </html>
