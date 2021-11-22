@@ -28,7 +28,7 @@ if (!$result) {
         <span>Payment</span>
     </div>
     <div class="info" style="font-size:140%;">
-    <form method="post"action="updateorder.php">
+    <form method="post"action="updateorderandpayment.php">
         <div>
             <span>Your Address:</span><?php echo $user["UserAddress"] ?>
         </div>
@@ -58,10 +58,7 @@ if (!$result) {
             <span>Upload Your Online Banking Slip</span>
             <input type="file" id="img" name="img" accept="image/*">
         </div>
-        <div class="textbox">
-            <span>Coupon Code:</span>
-            <input type="text" id="coupon_code" name="coupon_code" style="font-size:120%; position: relative; border-radius: 10px;">
-        </div>
+ 
         <div class="submit">
             <button name="confirm_order" type="submit" value="confirm_order" style="font-size:150%; position: relative; border: 2px solid #2D6A4F; border-radius: 10px;">Confirm
                 Order</button>

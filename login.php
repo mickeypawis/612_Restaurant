@@ -19,7 +19,7 @@
         </div>
         <div class="Password">
             <span>Password:</span>
-            <input type="text" id="password" name="password" placeholder="Password" required>
+            <input type="password" id="password" name="password" placeholder="Password" required>
 
         </div>
         <div class="submit">
@@ -46,30 +46,31 @@
         //รับค่า user & password
         $username = $_POST['username'];
         $password = $_POST['password'];
-
+        $decrypt = sha1($password);
+        echo $decrypt;
         //query 
-        $sql = "SELECT * FROM users WHERE username = '$username' AND UserPassword = '$password'";
+        $sql = "SELECT * FROM users WHERE username = '$username' AND UserPassword = '$decrypt'";
         $result = $mysqli->query($sql);
 
         // หาจำนวนเรกคอร์ดข้อมูล
         if (mysqli_num_rows($result) > 0) {
             session_start();
-            $uid_sql="SELECT IdUsers,UserType FROM users WHERE username = '$username' AND UserPassword = '$password'";
+            $uid_sql="SELECT IdUsers,UserType FROM users WHERE username = '$username' AND UserPassword ='$decrypt'";
             $result2 = $mysqli->query($uid_sql);
             $item = $result2->fetch_array();
             $_SESSION['IdUsers'] = $item['IdUsers'];
-            if($item['UserType']==0){
+            if($item['UserType']==1){
                 header("location: new_menu.php");
             }
             else{
-                header("location: staff_menu.html");
+                header("location: staff_menu.php");
             }
              //ไปไปตามหน้าที่คุณต้องการ
 
         } else {
             $code_error = "<BR><FONT COLOR=\"red\">Incorrect Username or Password</FONT>";
             echo ($code_error);
-            header("location: login.php"); //ไม่ถูกต้องให้กับไปหน้าเดิม
+            //header("location: login.php"); //ไม่ถูกต้องให้กับไปหน้าเดิม
         }
     }
     ?>

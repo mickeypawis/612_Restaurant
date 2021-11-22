@@ -46,7 +46,7 @@
         </div>
         <div class="edit">
             <form action="new_editprofile.php">
-            <!-- <button name="Edit" type= "submit " value="Edit">Edit</button> --> -->
+            <!-- <button name="Edit" type= "submit " value="Edit">Edit</button> -->
                 <a href="new_editprofile.php">Edit</a>
             <br>
             </form>

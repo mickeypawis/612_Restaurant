@@ -23,33 +23,33 @@ if (!$result) {
 </head>
 <body style="background-color: #b7e4c7;">
     <div class="topnav">
-        <a href="new_menu.php">Menu</a>
+        <a href="staff_menu.php">Menu</a>
         <a href="userprofile.php">Profile</a>
-        <a class="active" href="status.php">Your Order</a>
-        <a href="feedback.php">Feedback</a>
+        <a href="staff_status.php">Status</a>
+        <a href="edit_menu.php">Edit Menu</a>
+        <a class="active"href="see_feedback.php">See Feedback</a>
+        <a href="ingredient.php">Ingredient</a>
         <a href="logout.php">Logout</a>
     </div>
     <div class="title">
-        <span>Your Order</span>
+        <span>Customer Feedback</span>
     </div>
     <div class="detail" style="background-color: white;">
         <div class="showdetail">
             <table style="width:100%">
                 <tr>
-                    <th>Order ID </th>
+                    <th>Feedback</th>
                     <th>Date</th>
-                    <th>Dine In/Take Away</th>
-                    <th>Status</th>
+                    <th>FeedBack</th>
                 </tr>
                 <?php
-                $sql2 = "SELECT * FROM tbl_Order WHERE IdUsers='$userid'";
+                $sql2 = "SELECT * FROM Feedback";
                 $result2=$mysqli->query($sql2);
-                 while($order=$result2->fetch_array()){
+                 while($commendd=$result2->fetch_array()){
                     echo"<tr>";
-                    echo'<th> <a href="deep_detail.php">Order ID:' .$order["IdOrder"]."</a></th>";
-                    echo'<th>'.$order["CreationDate"]."</th>";
-                    echo'<th>'.$order["Where2eat"]."</th>";
-                    echo'<th>'.$order['order_status']."</th>";
+                    echo'<th>'.$commendd["IdCommend"]."</th>";
+                    echo'<th>'.$commendd["Date"]."</th>";
+                    echo'<th>'.$commendd["Commend"]."</th>";
                     echo" </tr>";}?>
             </table>    
         </div>

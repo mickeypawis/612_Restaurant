@@ -53,6 +53,7 @@
     if (isset($_POST['Signup'])) {
         $username = $_POST['username'];
         $password = $_POST['password'];
+        $encrypt=sha1($password);
         $firstname = $_POST['fname'];
         $lastname = $_POST['lname'];
         $email = $_POST['email'];
@@ -66,7 +67,7 @@
         // $next_user_id = 'U' . str_pad($lastnumid + 1, 4, "0", STR_PAD_LEFT);
 
         $query1 = "INSERT INTO users (username,UserPassword,userfname,userlname,useremail,useraddress,usertype) 
-        VALUES ('$username','$password','$firstname','$lastname','$email','$address','1')";
+        VALUES ('$username','$encrypt','$firstname','$lastname','$email','$address','1')";
 
         $result2 = $mysqli->query($query1);
         header("location: login.php");

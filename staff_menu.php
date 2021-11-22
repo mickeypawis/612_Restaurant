@@ -15,7 +15,7 @@ if (isset($_POST["add_to_cart"])) {
                $_SESSION["shopping_cart"][$count] = $item_array;
           } else {
                echo '<script>alert("Item Already Added")</script>';
-               echo '<script>window.location="new_menu.php"</script>';
+               echo '<script>window.location="staff_menu.php"</script>';
           }
      } else {
           $item_array = array(
@@ -33,7 +33,7 @@ if (isset($_GET["action"])) {
                if ($values["item_id"] == $_GET["id"]) {
                     unset($_SESSION["shopping_cart"][$keys]);
                     echo '<script>alert("Item Removed")</script>';
-                    echo '<script>window.location="new_menu.php"</script>';
+                    echo '<script>window.location="staff_menu.php"</script>';
                }
           }
      }
@@ -53,11 +53,13 @@ if (isset($_GET["action"])) {
 
 <body style="background-color: #b7e4c7;">
      <div class="topnav">
-          <a class="active" href="new_menu.php">Menu</a>
+          <a class="active" href="staff_menu.php">Menu</a>
           <form method="post" action="userprofile.php"></form>
           <a href="userprofile.php">Profile</a>
-          <a href="status.php">Your Order</a>
-          <a href="feedback.php">Feedback</a>
+          <a href="staff_status.php">Status</a>
+          <a href="edit_menu.php">Edit Menu</a>
+          <a href="see_feedback.php">See Feedback</a>
+          <a href="ingredient.php">Ingredient</a>
           <form role="form" method="post" action="logout.php">
                <a href="logout.php">Logout</a>
                <!-- <a href="new_login.html">Logout</a> -->
@@ -76,7 +78,7 @@ if (isset($_GET["action"])) {
                while ($row = mysqli_fetch_array($result)) {
           ?>
                     <div class="row">
-                         <form method="post" action="new_menu.php?action=add&id=<?php echo $row["id"]; ?>">
+                         <form method="post" action="staff_menu.php?action=add&id=<?php echo $row["id"]; ?>">
                               <div style="border:1px solid #333; background-color:#f1f1f1; border-radius:5px; padding:16px;" text-align="center">
                                    <img src="<?php echo $row["image"]; ?>" class="img-responsive" /><br />
                                    <h4 class="text-info"><?php echo $row["name"]; ?></h4>
@@ -114,7 +116,7 @@ if (isset($_GET["action"])) {
                                    <td><?php echo $values["item_quantity"]; ?></td>
                                    <td> <?php echo $values["item_price"]; ?> Baht</td>
                                    <td> <?php echo number_format($values["item_quantity"] * $values["item_price"], 2); ?> Baht</td>
-                                   <td><a href="new_menu.php?action=delete&id=<?php echo $values["item_id"]; ?>"><span class="text-danger">Remove</span></a></td>
+                                   <td><a href="staff_menu.php?action=delete&id=<?php echo $values["item_id"]; ?>"><span class="text-danger">Remove</span></a></td>
                               </tr>
                          <?php
                               $total = $total + ($values["item_quantity"] * $values["item_price"]);
@@ -140,17 +142,7 @@ if (isset($_GET["action"])) {
      $_SESSION["item_name"] = $values["item_name"];
      $_SESSION["item_quantity"] = $values["item_quantity"];
      $_SESSION["totalprice"] = $total;
-     // foreach ($_SESSION["shopping_cart"] as $keys => $values){
-     //      $details=$details.$values["item_name"].$_SESSION["item_quantity"]*$values["item_price"]."  ";
-     //  }
-     // echo $details;
-     
-     // $_SESSION["test"] = "TEST";
-     // echo $_SESSION["test"];
-     // echo "Session variables are set.";
-     // echo $_SESSION["item_name"].$_SESSION["item_quantity"];
-     // echo $_SESSION["shopping_cart"][0];
-     // print_r($_SESSION);
+
      ?>
 </body>
 </html>

@@ -23,36 +23,46 @@ if (!$result) {
 </head>
 <body style="background-color: #b7e4c7;">
     <div class="topnav">
-        <a href="new_menu.php">Menu</a>
+        <a href="staff_menu.php">Menu</a>
         <a href="userprofile.php">Profile</a>
-        <a class="active" href="status.php">Your Order</a>
-        <a href="feedback.php">Feedback</a>
+        <a href="staff_status.php">Status</a>
+        <a class="active" href="edit_menu.php">Edit Menu</a>
+        <a href="see_feedback.php">See Feedback</a>
+        <a href="ingredient.php">Ingredient</a>
         <a href="logout.php">Logout</a>
     </div>
     <div class="title">
-        <span>Your Order</span>
+        <span>Edit Menu</span>
     </div>
     <div class="detail" style="background-color: white;">
         <div class="showdetail">
             <table style="width:100%">
                 <tr>
-                    <th>Order ID </th>
-                    <th>Date</th>
-                    <th>Dine In/Take Away</th>
-                    <th>Status</th>
+                    <th>Menu ID </th>
+                    <th>Name</th>
+                    <th>Image</th>
+                    <th>Price</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
                 </tr>
                 <?php
-                $sql2 = "SELECT * FROM tbl_Order WHERE IdUsers='$userid'";
+                $sql2 = "call Showmenu()";
                 $result2=$mysqli->query($sql2);
-                 while($order=$result2->fetch_array()){
+                 while($menu=$result2->fetch_array()){
                     echo"<tr>";
-                    echo'<th> <a href="deep_detail.php">Order ID:' .$order["IdOrder"]."</a></th>";
-                    echo'<th>'.$order["CreationDate"]."</th>";
-                    echo'<th>'.$order["Where2eat"]."</th>";
-                    echo'<th>'.$order['order_status']."</th>";
-                    echo" </tr>";}?>
-            </table>    
+                    echo'<th>' .$menu["id"]."</a></th>";
+                    echo'<th>'.$menu["name"]."</th>";
+                    echo'<th>'.$menu["image"]."</th>";
+                    echo'<th>'.$menu['price']."</th>";?>
+                    <th> <a href='edit_menu2.php?id=<?=$menu["id"]?>'>Edit</a></th>
+                    <th> <a href='delete_menu.php?id=<?=$menu["id"]?>'>Delete</a></th>
+                    </tr>
+                <?php } ?>
+            </table>
+            
         </div>
+        <a href="add_menu.php">Add Menu</a>    
     </div>
 </body>
 </html>
+
