@@ -10,7 +10,7 @@
   $payment =$_POST["payment"];
   $slip=$_POST["img"];
   $img='image/'.$slip;
-  echo $payment;
+  // echo $payment;
   // echo $where;
   // echo $userid.$details.$totalprice;
   // echo $slip;
@@ -24,7 +24,7 @@
         //echo "New record created successfully";
         $insert_sql = "INSERT INTO OrderDetails(IdOrder,IdUsers,Details,TotalPrice) Values ((Select max(tbl_Order.IdOrder) from tbl_Order where IdUsers=$userid),$userid,'$details',$totalprice)";
         if($mysqli->query($insert_sql)==TRUE){
-            $insert_payment ="INSERT INTO Payment(IdUsers,IdOrder,PaymentMethod,PaymentStatus,Payment_Slip,TotalPrice) Values ($userid,(select max(tbl_Order.IdOrder) from tbl_Order where IdUsers=$userid),'$payment','Completed,'$img',$totalprice)";
+            $insert_payment ="INSERT INTO Payment(IdUsers,IdOrder,PaymentMethod,PaymentStatus,Payment_Slip,TotalPrice) Values ($userid,(select max(tbl_Order.IdOrder) from tbl_Order where IdUsers=$userid),'$payment','Completed','$img',$totalprice)";
           // if($mysqli->query($insert_payment)==TRUE){
             if($mysqli->query($insert_payment)== TRUE){
             header("location:status.php"); 
